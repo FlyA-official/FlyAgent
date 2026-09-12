@@ -1,18 +1,15 @@
 <div align="center">
-  <img src="icon.png" width="120" />
-  <h1>FlyAgent</h1>
-  <p>Riichi mahjong · real-time decision assistant</p>
+  <img src="images/首屏图.webp" alt="FlyAgent · riichi mahjong real-time decision assistant" />
   <p>
-    <a href="README_zh-CN.md">简体中文</a> | <strong>English</strong>
-  </p>
-  <p>
-    <b>Get a Key</b> (link coming) ·
+    <a href="README_zh-CN.md">简体中文</a> | <strong>English</strong> ·
     <a href="https://nashout.com">Website</a> ·
     <a href="https://discord.gg/hUwMGczz">Discord</a>
   </p>
 </div>
 
 ---
+
+![FlyAgent main screen](images/主页组图.webp)
 
 ## Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位
 
@@ -49,8 +46,6 @@ Below are review results from the open-source model Mortal. The **decision overl
 ## In-game coaching · fast and rich inference output
 
 **Global nodes**: deployed worldwide, with very low inference latency.
-
-![FlyAgent main screen: inference output and tile-efficiency calculator](images/主页组图.webp)
 
 - **Candidates** — the model outputs a mixed strategy; the closer the probabilities, the closer the actions are in value
 - **Danger** — the deal-in risk of each tile right now

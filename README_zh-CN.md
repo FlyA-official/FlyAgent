@@ -1,18 +1,15 @@
 <div align="center">
-  <img src="icon.png" width="120" />
-  <h1>FlyAgent</h1>
-  <p>立直麻将 · 实时决策助手</p>
+  <img src="images/首屏图.webp" alt="FlyAgent · 立直麻将实时决策助手" />
   <p>
-    <a href="README.md">English</a> | <strong>简体中文</strong>
-  </p>
-  <p>
-    <b>购买 Key</b>（链接待配置） ·
+    <a href="README.md">English</a> | <strong>简体中文</strong> ·
     <a href="https://nashout.com">官网</a> ·
     <a href="https://discord.gg/hUwMGczz">Discord</a>
   </p>
 </div>
 
 ---
+
+![FlyAgent 主界面](images/主页组图.webp)
 
 ## 雀魂 魂天 · 天凤 十段 · 天凤 安定段位 天鳳位
 
@@ -49,8 +46,6 @@ FlyA 模型做到了**不使用任何人类牌谱**，使用非完美信息博�
 ## 局内教学 · 极速且丰富的推理输出
 
 **全球节点**：全球部署，极低的推理延迟。
-
-![FlyAgent 主界面：推理输出与牌效计算](images/主页组图.webp)
 
 - **候选** — 混合策略输出，候选概率越接近，说明动作影响越接近
 - **危险度** — 每张牌当下的放铳风险
