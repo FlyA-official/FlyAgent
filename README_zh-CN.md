@@ -16,11 +16,7 @@
 
 ## 雀魂 魂天 · 天凤 十段 · 天凤 安定段位 天鳳位
 
-<p align="center">
-  <img src="images/rank-ms.webp" width="32%" alt="雀魂 · 雀力认定书" />
-  <img src="images/rank-th.webp" width="32%" alt="天凤 · 段位记录" />
-  <img src="images/rank-stable.webp" width="32%" alt="天凤 · 推定安定段位" />
-</p>
+![雀魂 魂天 · 天凤 十段 · 天凤 安定段位 天鳳位](images/战绩图.webp)
 
 我们正在持续尝试冲击天凤位。作为新兴模型，这需要一定时间。
 
@@ -48,13 +44,13 @@ FlyA 模型做到了**不使用任何人类牌谱**，使用非完美信息博�
 
 以下为开源模型 Mortal 的跑谱结果。**极低的决策重合率**，更加证明 FlyA 系模型的独特打法。无惧「跑谱」，无需「降重」。
 
-![Mortal 检讨结果](images/rev1.webp)
+![Mortal 跑谱结果](images/跑谱图.webp)
 
 ## 局内教学 · 极速且丰富的推理输出
 
 **全球节点**：全球部署，极低的推理延迟。
 
-![FlyAgent 推荐卡](images/reco.webp)
+![FlyAgent 主界面：推理输出与牌效计算](images/主页组图.webp)
 
 - **候选** — 混合策略输出，候选概率越接近，说明动作影响越接近
 - **危险度** — 每张牌当下的放铳风险

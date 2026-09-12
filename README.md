@@ -16,11 +16,7 @@
 
 ## Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位
 
-<p align="center">
-  <img src="images/rank-ms.webp" width="32%" alt="Mahjong Soul rank certificate" />
-  <img src="images/rank-th.webp" width="32%" alt="Tenhou dan record" />
-  <img src="images/rank-stable.webp" width="32%" alt="Tenhou estimated stable rank" />
-</p>
+![Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位](images/战绩图.webp)
 
 We are still working toward 天鳳位. As a young model, that takes time.
 
@@ -48,13 +44,13 @@ We went down three roads and saw how they differ:
 
 Below are review results from the open-source model Mortal. The **decision overlap rate is extremely low**, which is further evidence that the FlyA models play their own game. No fear of review, no need to "de-duplicate".
 
-![Mortal review results](images/rev1.webp)
+![Mortal review results](images/跑谱图.webp)
 
 ## In-game coaching · fast and rich inference output
 
 **Global nodes**: deployed worldwide, with very low inference latency.
 
-![FlyAgent recommendation card](images/reco.webp)
+![FlyAgent main screen: inference output and tile-efficiency calculator](images/主页组图.webp)
 
 - **Candidates** — the model outputs a mixed strategy; the closer the probabilities, the closer the actions are in value
 - **Danger** — the deal-in risk of each tile right now
