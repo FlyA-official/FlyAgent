@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="images/首屏图.webp" alt="FlyAgent · 立直麻将实时决策助手" />
+  <img src="images/hero-zh-CN.webp" alt="FlyAgent · 立直麻将实时决策助手" />
   <p>
     <a href="README.md">English</a> | <strong>简体中文</strong> ·
     <a href="https://nashout.com">官网</a> ·

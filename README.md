@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="images/首屏图.webp" alt="FlyAgent · riichi mahjong real-time decision assistant" />
+  <img src="images/hero-en.webp" alt="FlyAgent · riichi mahjong real-time decision assistant" />
   <p>
     <a href="README_zh-CN.md">简体中文</a> | <strong>English</strong> ·
     <a href="https://nashout.com">Website</a> ·
