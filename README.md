@@ -1,134 +1,164 @@
 <div align="center">
   <img src="icon.png" width="120" />
-  <h1>FlyA Agent</h1>
-  <p>基于 FlyA AI 的日本麻将智能体桌面软件</p>
+  <h1>FlyAgent</h1>
+  <p>Riichi mahjong · real-time decision assistant</p>
   <p>
-    <strong>简体中文</strong> | <a href="README_zh-TW.md">繁體中文</a> | <a href="README_en.md">English</a> | <a href="README_ja.md">日本語</a>
+    <a href="README_zh-CN.md">简体中文</a> | <strong>English</strong>
+  </p>
+  <p>
+    <b>Get a Key</b> (link coming) ·
+    <a href="https://nashout.com">Website</a> ·
+    <a href="https://discord.gg/hUwMGczz">Discord</a>
   </p>
 </div>
 
 ---
 
-## 最新进展 2026/4/30
+## Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位
 
-v16的模型取得了非常惊人的进展！甚至可以通过prompt的形式对模型的风格进行定调，例如：我希望可以偏进攻一些、我想做一次役满，只要有苗头，请全力追....之类的。这不是透过后期的算法硬门控，而是真正的改变神经网络概率链
+<p align="center">
+  <img src="images/rank-ms.webp" width="32%" alt="Mahjong Soul rank certificate" />
+  <img src="images/rank-th.webp" width="32%" alt="Tenhou dan record" />
+  <img src="images/rank-stable.webp" width="32%" alt="Tenhou estimated stable rank" />
+</p>
 
-当然大家不用担心模型的强度，v15模型在强化训练中展现了超快的进步速度，目前我们手上的强化训练测试模型，仅仅经过了20多小时的训练，就对mortal训练的离线基线0308avg_rank 2.45左右了，如果你也尝试过训练一个mortal模型，你应该能知道这是多夸张的速度，而我们自始至终都没有真正启动过正式强化训练，因为模型一直在迭代，每次强化跑通后，就会立刻停下来给模型增加功能。
+We are still working toward 天鳳位. As a young model, that takes time.
 
-所以，我将不再对v15模型进行强化训练，让资源all in v16！
+## Zero human game records · self-play reinforcement
 
-它将是FlyA模型的终极形态
+FlyA is trained on **no human game records at all**. It starts from zero and plays itself, using counterfactual regret minimisation — the algorithm in imperfect-information game theory with the strongest Nash-equilibrium convergence guarantee — and top-level strength emerges on its own.
 
+We went down three roads and saw how they differ:
 
-## 起源
+| Approach | Where it ends up |
+|---|---|
+| **Counterfactual regret minimisation (CFR)** · what FlyA uses | Backed by Nash convergence, it settles on the mix that is **hardest for opponents to exploit** |
+| Policy-gradient methods such as PPO | Charges toward an extreme to exploit opponents, gets exploited back, and circles the optimal mix forever without settling |
+| Value-function methods such as DQN (e.g. Mortal) | Collapses past a certain point — it retreats into a corner and only ever plays one way |
 
-嗨，这是一款全新的立直麻将教学软件。
+**Zero-style training also rediscovers the techniques that only strong human players use:**
 
-说来话长——我一直想找一款能真正教我打麻将的工具。但翻遍了市面上的软件和模型，总觉得差点意思：牌效计算器（mahjong-helper 那类）能算向听数、有效牌、打点这些确定性数据，但也仅此而已——你知道了牌效，却还是不知道整体思路是什么；AI 辅助工具（copilot 那类）背后跑的是 Mortal 之类的神经网络，确实很强，但它像个黑盒——你看到推荐结果，却不知道它在"想"什么。这种感觉就像抄作业，抄完了还是不会做。
+- **Dead hand, fold early** — it does not wait for someone to declare riichi before looking for safe tiles; it recognises at the deal that this hand is not winnable and sets a defensive tone from the start
+- **Far ahead, fold the whole hand** — giving up the hand to protect its placement. That is score awareness, not tile-efficiency maths
+- **Plenty of counter-intuitive anti-efficiency play** — worse on tile efficiency, better on overall win rate — much of it nobody played before
 
-我希望 AI 不仅能给出推荐，还能告诉我"我为什么推荐这张"——这个"为什么"不是事后分析出来的马后炮，而是模型在推理时**直接输出**的内在判断。比如它觉得当前局面有多危险、推进的信心有多大、这一手的动机到底是进攻还是防守——这些都是模型自己"说"出来的，不是靠规则反推拼凑的。
+> For the training method and the trade-offs behind it, see [The FlyA design philosophy](https://nashout.com/articles/flya-design-philosophy).
 
-于是我从公司逮捕了几个小伙伴，一起踏上了神经网络这条不归路（逃
+## Built in-house, not afraid of comparison
 
-顺便说一下我们的模型。FlyA 采用纯人类棋谱行为模仿作为基座训练，架构上用的是 CNN + Transformer，让模型具备注意力机制、长时序感知和对手推测能力。在此基础上，我们引入了 CFR（反事实遗憾最小化）算法做行为优化，再配合自对弈强化，整个训练分成多个阶段逐步推进。训练早期阶段的纯行为模仿基座模型，就已经在 RiichiLab 上拿过第一了——后面还有 CFR 和自对弈强化等阶段，值得期待。
+Below are review results from the open-source model Mortal. The **decision overlap rate is extremely low**, which is further evidence that the FlyA models play their own game. No fear of review, no need to "de-duplicate".
 
-另外，我们在网络架构上做了一些……比较离谱的优化，使得模型只需要很少量的牌谱就能提取出深层的麻将策略。所以请放心，我们不会采集您的对局数据——因为说实话，我们也用不着那么多牌谱 :)
+![Mortal review results](images/rev1.webp)
 
-欢迎加入我们的 Discord / QQ 群关注模型训练动态和软件发布进展——主要是会发免费 Key，我们会大撒币的！
+## In-game coaching · fast and rich inference output
 
-![screenshot](screenshot.png)
+**Global nodes**: deployed worldwide, with very low inference latency.
 
-## 简介
+![FlyAgent recommendation card](images/reco.webp)
 
-**FlyA Agent** 是一款基于 FlyA AI 的日本麻将智能体桌面软件，集实时教学、内置对局、自动化操作于一体。
+- **Candidates** — the model outputs a mixed strategy; the closer the probabilities, the closer the actions are in value
+- **Danger** — the deal-in risk of each tile right now
+- **Opponent reads** — an estimate of each opponent's current state
+- **Model reasoning** — why the model chooses this under its current strategy
 
-你可以拿它接入雀魂等立直麻将游戏，实时看到 AI 的推荐和思考过程。我们甚至往里面塞了一个完整的麻将游戏，就为了让你能直接跟 AI 对打练习：
+> A richer explanation chain is being supervised; the output will grow further.
 
-![built-in game](screenshot_game.png)
+## HUD overlay · see the reasoning, not the text
 
-FlyA 模型的核心特色在于**可解释性**——威胁感知、推进信心、决策动机，这些都是模型推理过程中原生输出的信号，不是后期加工的结果。
+![HUD overlay on a real game screen](images/hud.webp)
 
-> **当前版本是早期测试版**，Bug 肯定是有的。如果介意的话，建议别拿上分心切的大号来体验 :)
+- **Clear recommendation icons** — drawn straight onto the tiles, so you never have to compare text
+- **Flexible overlay settings** — what it shows, where it sits and how big it is are all yours to set
+- **Tsumogiri / tedashi marking** — see at a glance whether each discard was drawn or held
 
-## 下载安装
+The HUD is **pure visuals plus precomputed coordinates**. It does not hook into any game process — it only draws on top.
 
-前往 [Releases](../../releases/latest) 页面下载最新版本：
+## Game stats · look back at every game
 
-| 文件 | 说明 |
-|------|------|
-| `FlyA-Agent-*-win-x64-setup.exe` | Windows 安装包（推荐） |
-| `FlyA-Agent-*-win-x64.zip` | Windows 便携版（免安装，解压即用） |
+Every game you finish is recorded in full, on your own machine.
 
-**系统要求**：Windows 10/11 (x64)，需联网（AI 推理为云端服务）
+![FlyAgent game stats](images/stats.webp)
 
-软件用 Go 和 Rust 写的，静态编译，不依赖任何运行时，装上就能跑。如果你遇到还需要装依赖的情况，那肯定是我们的锅，请告诉我们。
+- **Replay any game** — every discard, and how it differed from the AI's
+- **Placement distribution and PT curve** — accumulated from the rank points the platform actually awards
+- **Win / deal-in / riichi rates** — a full set of numbers, browsable game by game
+- **Export Tenhou-format logs** — take them to Mortal for review
+- **Local only** — never uploaded
 
-## 快速上手
+## Models and styles · swap the model, swap the play style
 
-1. 安装或解压后，启动 **FlyA Agent**
-2. 使用测试 Key 登录（见下方说明）
-3. 在主页「快速开始」卡片中选择游戏平台：
-   - **雀魂网页版**：通过软件内置的指纹浏览器启动，不会泄露你的浏览器指纹
-   - **客户端版**（雀魂客户端、一番街等）：点击「启动代理」，给一下管理员权限，软件会自动搞定证书和虚拟网卡
-   - 也可以选择**手动装证书 + 用自己的代理**接入，这样不需要管理员权限
+Every model has its own character: steady, aggressive, balanced. **The change takes effect on your very next discard.**
 
-## 关于模型与登录
+![Model and style selection in settings](images/model.webp)
 
-测试版支持两种登录方式：
-- **Akagi OT2 Key**
-- 我们**不定期发放的测试 Key**
+- **Several models to choose from** — separate line-ups for 4-player and 3-player, change any time
+- **Play styles** — the same model can take on a different character
+- **Light on your hardware** — models run in the cloud, so an old laptop keeps up
+- **Never idles when the link drops** — a built-in algorithm takes over
 
-需要说明的是，可解释性（威胁感知、推进信心、决策动机）是 FlyA 自研模型推理时直接输出的结果，并非外挂的规则分析。使用 OT 模型时不支持此功能，但基础的向听数、安全牌、有效牌等确定性计算仍然可用。
+## Practice partner · want to train? Play a game against it
 
-## 支持平台
+Play against the FlyA models in **FlyMahjong**. Following recommendations is one thing; sitting across the table from it is another.
 
-| 平台 | 状态 |
-|------|------|
-| 雀魂网页版（全区服） | ✅ 已支持 |
-| 雀魂客户端（全区服） | ✅ 已支持 |
-| 麻雀一番街 | ✅ 已支持 |
-| 天凤、雀姬等 | 🔧 适配中 |
+## Support
 
-软件支持**简体中文、繁体中文、日本語、English** 四种语言。翻译有问题随时告诉我们。
+Mahjong Soul is fully supported; Tenhou and Riichi City currently get in-game coaching only.
 
-## 代理与权限
+| Capability | Mahjong Soul | Tenhou | Riichi City |
+|---|:---:|:---:|:---:|
+| In-game coaching | ✅ | ✅ | ✅ |
+| HUD overlay | ✅ | In progress | In progress |
+| Auto play | ✅ | In progress | In progress |
+| Auto join | ✅ | In progress | In progress |
 
-客户端代理模式用的是我们自研的代理引擎，通过虚拟网卡接管游戏流量。第一次用需要给管理员权限：
+Mahjong Soul is supported on the **Chinese, Japanese and English web clients**, and on the Mahjong Soul desktop client.
 
-- 安装信任证书
-- 创建虚拟网卡
+**Cross-platform plan**: Windows is supported; macOS and Android are in development; Linux and iOS are planned.
 
-搞定一次之后就不用再授权了，代理会在后台静默运行。实在不放心的话，也可以手动装证书、用自己的代理工具。
+## Getting started
 
-> ⚠️ 因为用了虚拟网卡（TUN 模式），所以没法和 Clash、V2RayN 之类同样用 TUN 的代理软件同时跑。用之前先把它们关了，或者切成系统代理模式就好。
+Three steps to your first recommendation:
 
-## HUD 提示
+1. **Unzip it** — a portable build: unzip into any folder, no installation and no administrator rights needed. On first launch Windows may show a SmartScreen warning (the archive is not code-signed yet) — choose "Run anyway".
+2. **Enter a Key** — no account registration. Paste the Key into the sign-in page and you are done.
+3. **Open a table** — open the Mahjong Soul web client from the app and start a game. The recommendation card refreshes with the game on its own. The first time you connect you need to install a certificate; there is a one-click install button in the app.
 
-HUD 浮窗默认对截图不可见（防止直播/录屏时泄露）。需要截图反馈 Bug 的话，去「设置 > HUD」打开截图可见性。
+Full step-by-step guide with screenshots: [FlyAgent user guide](https://nashout.com/articles/user-guide) (Chinese).
 
-## 隐私与安全
+> **The installer is not publicly released yet.** For now we send it to you after purchase; a download entry will be added here once it is.
 
-- **数据安全**：软件不会篡改游戏数据，不会偷偷上传你的隐私信息。我们也不需要玩家数据来训练模型。
-- **封号风险**：我们自己的测试号目前全部健在。但如果你拿它长时间挂机连打，那被封了也不奇怪——请合理使用。
-- **闭源策略**：为了防止滥用、保护用户安全，软件会长期闭源，不会大规模免费开放。代码完全自研，没用过任何同类软件的源码。当然，软件本体也不是核心竞争力，我也懒得加太重的壳影响性能。
-- **杀毒误报**：当前版本用的是常规构建流程，误报概率已经很低了。如果还遇到，请告诉我们。
+## FAQ
 
-## 关于更新
+**Will I get banned?**
+FlyAgent does not tamper with game data, and it obtains nothing you cannot already see — what it reads is exactly what is on your screen. Please use it within what each platform's rules allow.
 
-说实话，早期版本后续可能不太会频繁更新了。我们的模型架构最近变化比较大，目前软件是以"桥接"的方式在用模型。换引擎基本等于把整条链路重构一遍，所以计划是：先发一个差不多能用的版本，然后暂停更新，集中精力搞新模型的适配。
+**Do I need to register an account?**
+No. Buy a Key, paste it into the app, done. No phone number, no email, no account binding.
 
-## 联系方式
+**How many devices can one Key be used on?**
+One at a time. Signing in on another device kicks the previous one off, and that device gets an immediate notification so you can confirm it was you.
 
-| 渠道 | 链接 |
-|------|------|
-| Discord（FlyA Agent） | https://discord.gg/YEgQRT4MMU |
-| Discord（shinkuan's Akagi） | https://discord.gg/Z2wjXUK8bN |
-| QQ 群 | 1093245435 |
+**Is my game data uploaded?**
+Inference runs in the cloud, so the information about the current hand has to reach the server before a recommendation can be computed — that is the precondition for getting advice at all. Game records, however, stay on your own computer and are never uploaded, and the app contains no usage analytics or behavioural tracking of any kind.
 
-## 免责声明
+**Windows says the app is unsafe after unzipping?**
+The archive is not code-signed yet, so Windows shows a SmartScreen warning on first launch — choose "Run anyway". Signing will be added before the official release.
 
-本软件仅供立直麻将教学与学习交流使用。我们反对拿它去挂机连打、刷分。我们做这个的初衷，就是想搞一款真正能帮人学麻将的东西——所以软件里塞了很多教学元素，模型也是基于可解释的动机策略训练的。用这个软件干了啥，后果自负哈。
+## Safety boundaries
+
+- **Only what is visible** — it works with what is visible at the table anyway: your own hand and melds, the discards, public riichi and dora indicators, your own draws and calls. It **never obtains the wall, opponents' hands, other players' concealed kongs, or any private server-side data**.
+- **No cheating capability** — it does not read or modify game memory, inject into game processes, alter game files, or exploit any bug.
+- **Records stay local** — game records, certificate and settings all live in the program's own folder; **deleting the folder is the uninstall**.
+- **Whether assistive tools are allowed is decided by each platform's rules** — please check and follow them before you use it.
 
 ---
 
-本软件为闭源商业软件，保留所有权利。详见 [LICENSE](LICENSE)。
+<p align="center">
+  <b>Get a Key</b> (link coming) ·
+  <a href="https://nashout.com">Website</a> ·
+  <a href="https://nashout.com/articles">Articles</a> ·
+  <a href="https://discord.gg/hUwMGczz">Discord</a> ·
+  QQ group 1093245435
+</p>
+
+This software is closed-source commercial software. All rights reserved. See [LICENSE](LICENSE).
