@@ -1,7 +1,7 @@
 <div align="center">
   <img src="images/hero-zh-CN.webp" alt="FlyAgent · 立直麻将实时决策助手" />
   <p>
-    <a href="README.md">English</a> | <strong>简体中文</strong> ·
+    <a href="README.md">English</a> · <a href="README_zh-TW.md">繁體中文</a> · <a href="README_ja.md">日本語</a> | <strong>简体中文</strong> ·
     <a href="https://nashout.com">官网</a> ·
     <a href="https://discord.gg/hUwMGczz">Discord</a>
   </p>
@@ -9,11 +9,9 @@
 
 ---
 
-![FlyAgent 主界面](images/主页组图.webp)
-
 ## 雀魂 魂天 · 天凤 十段 · 天凤 安定段位 天鳳位
 
-![雀魂 魂天 · 天凤 十段 · 天凤 安定段位 天鳳位](images/战绩图.webp)
+![雀魂 魂天 · 天凤 十段 · 天凤 安定段位 天鳳位](images/ranks.webp)
 
 我们正在持续尝试冲击天凤位。作为新兴模型，这需要一定时间。
 
@@ -41,7 +39,7 @@ FlyA 模型做到了**不使用任何人类牌谱**，使用非完美信息博�
 
 以下为开源模型 Mortal 的跑谱结果。**极低的决策重合率**，更加证明 FlyA 系模型的独特打法。无惧「跑谱」，无需「降重」。
 
-![Mortal 跑谱结果](images/跑谱图.webp)
+![Mortal 跑谱结果](images/mortal-review.webp)
 
 ## 局内教学 · 极速且丰富的推理输出
 

@@ -1,7 +1,7 @@
 <div align="center">
   <img src="images/hero-en.webp" alt="FlyAgent · riichi mahjong real-time decision assistant" />
   <p>
-    <a href="README_zh-CN.md">简体中文</a> | <strong>English</strong> ·
+    <strong>English</strong> | <a href="README_zh-CN.md">简体中文</a> · <a href="README_zh-TW.md">繁體中文</a> · <a href="README_ja.md">日本語</a> ·
     <a href="https://nashout.com">Website</a> ·
     <a href="https://discord.gg/hUwMGczz">Discord</a>
   </p>
@@ -9,11 +9,9 @@
 
 ---
 
-![FlyAgent main screen](images/主页组图.webp)
-
 ## Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位
 
-![Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位](images/战绩图.webp)
+![Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位](images/ranks.webp)
 
 We are still working toward 天鳳位. As a young model, that takes time.
 
@@ -41,7 +39,7 @@ We went down three roads and saw how they differ:
 
 Below are review results from the open-source model Mortal. The **decision overlap rate is extremely low**, which is further evidence that the FlyA models play their own game. No fear of review, no need to "de-duplicate".
 
-![Mortal review results](images/跑谱图.webp)
+![Mortal review results](images/mortal-review.webp)
 
 ## In-game coaching · fast and rich inference output
 
