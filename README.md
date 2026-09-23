@@ -9,37 +9,40 @@
 
 ---
 
-## Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位
+## Real results · Four-player · Mahjong Soul Celestial · Three-player · Tenhou Judan
 
-![Mahjong Soul 魂天 · Tenhou 十段 · Tenhou stable rank 天鳳位](images/ranks.webp)
+<table><tr>
+<td align="center" width="50%"><img src="images/rank-majsoul.webp" alt="Mahjong Soul strength certificate: Celestial" /><br /><sub>Mahjong Soul · Strength certificate</sub></td>
+<td align="center" width="50%"><img src="images/rank-tenhou.webp" alt="Tenhou three-player rank record: Judan" /><br /><sub>Tenhou · Rank record</sub></td>
+</tr></table>
 
-We are still working toward 天鳳位. As a young model, that takes time.
+We're still pushing for higher ranks. As a young model that takes time — new high-rank results will be published once anonymized.
 
-## Zero human game records · self-play reinforcement
+## FlyA Manout · Zero game records — ours alone · trained purely by self-play reinforcement
 
-FlyA is trained on **no human game records at all**. It starts from zero and plays itself, using counterfactual regret minimisation — the algorithm in imperfect-information game theory with the strongest Nash-equilibrium convergence guarantee — and top-level strength emerges on its own.
-
-We went down three roads and saw how they differ:
+To surpass humans, you cannot let human intuition steer the training. FlyA Manout never touches a single human game record — it self-plays from absolute zero using CHR (contextual hindsight regret), the algorithm with the strongest Nash-equilibrium convergence guarantees in imperfect-information games. Top-tier strength emerges on its own: no line and no technique was ever taught by a person, each is simply as close to that equilibrium as the model can get. Heyman and Manplus follow a different line: Heyman faithfully imitates human play, while Manplus is distilled from human data and then reinforced through self-play.
 
 | Approach | Where it ends up |
 |---|---|
-| **Counterfactual regret minimisation (CFR)** · what FlyA uses | Backed by Nash convergence, it settles on the mix that is **hardest for opponents to exploit** |
-| Policy-gradient methods such as PPO | Charges toward an extreme to exploit opponents, gets exploited back, and circles the optimal mix forever without settling |
-| Value-function methods such as DQN (e.g. Mortal) | Collapses past a certain point — it retreats into a corner and only ever plays one way |
+| **CHR — what Manout uses** | guaranteed to converge to a Nash equilibrium, it settles squarely on the mix that is **hardest for opponents to exploit** |
+| Policy-gradient methods like PPO | swings to extremes to exploit opponents, gets exploited right back, and circles the optimal mix forever without ever settling |
+| Value-function methods like DQN (e.g. the M-series model) | beyond a certain point the policy collapses and degenerates — it retreats into a corner and only knows one play |
 
-**Zero-style training also rediscovers the techniques that only strong human players use:**
+**Manout’s zero-style training also brings out techniques only strong human players use — for example:**
 
-- **Dead hand, fold early** — it does not wait for someone to declare riichi before looking for safe tiles; it recognises at the deal that this hand is not winnable and sets a defensive tone from the start
-- **Far ahead, fold the whole hand** — giving up the hand to protect its placement. That is score awareness, not tile-efficiency maths
-- **Plenty of counter-intuitive anti-efficiency play** — worse on tile efficiency, better on overall win rate — much of it nobody played before
+- **Bad opening hand? Keep safe tiles early** — It doesn't wait for a riichi to start hunting safe tiles — it reads the deal, sees this hand won't win, and sets a defensive tone from the start
+- **Way ahead? Fold it all — even deal in on purpose** — It deliberately gives up the hand to protect its placement. That's score awareness, not tile-power calculation
+- **Plenty of counterintuitive anti-efficiency plays** — A tile-efficiency loss, but a higher overall win rate — many of these lines have never been played before
 
 > For the training method and the trade-offs behind it, see [The FlyA design philosophy](https://nashout.com/articles/flya-design-philosophy).
 
-## Built in-house, not afraid of comparison
+## Genuinely self-developed — no fear of comparison
 
-Below are review results from the open-source model Mortal. The **decision overlap rate is extremely low**, which is further evidence that the FlyA models play their own game. No fear of review, no need to "de-duplicate".
+FlyA models are backed by a firm commitment: no server-side “similarity dodging” and no “dumbing down”, ever. Built on our own algorithms, they cannot “collide” with open-source models.
 
-![Mortal review results](images/mortal-review.webp)
+![Manout 1 · 4p Jade Room — M-series model Rating / agreement](images/compare-en.webp)
+
+<sub>The data above has been anonymized and published in shuffled order.</sub>
 
 ## In-game coaching · fast and rich inference output
 
@@ -71,7 +74,7 @@ Every game you finish is recorded in full, on your own machine.
 - **Replay any game** — every discard, and how it differed from the AI's
 - **Placement distribution and PT curve** — accumulated from the rank points the platform actually awards
 - **Win / deal-in / riichi rates** — a full set of numbers, browsable game by game
-- **Export Tenhou-format logs** — take them to Mortal for review
+- **Export Tenhou logs** — compare them against other models
 - **Local only** — never uploaded
 
 ## Models and styles · swap the model, swap the play style
@@ -123,6 +126,9 @@ FlyAgent does not tamper with game data, and it obtains nothing you cannot alrea
 
 **Do I need to register an account?**
 No. Buy a Key, paste it into the app, done. No phone number, no email, no account binding.
+
+**Which operating systems are supported?**
+Windows is supported today. macOS and Android are in development; Linux and iOS are on the roadmap.
 
 **How many devices can one Key be used on?**
 One at a time. Signing in on another device kicks the previous one off, and that device gets an immediate notification so you can confirm it was you.
