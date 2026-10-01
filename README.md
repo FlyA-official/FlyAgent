@@ -66,7 +66,7 @@ Mahjong Soul, Tenhou and Riichi City all support in-game coaching and auto-play.
 | Capability | Mahjong Soul | Tenhou | Riichi City |
 |---|---|---|---|
 | In-game coaching | ✅ | ✅ | ✅ |
-| HUD overlay | ✅ | In progress | In progress |
+| HUD overlay | ✅ | ✅ | ✅ |
 | Automation | ✅ | ✅ | ✅ |
 | Auto-join | ✅ | In progress | ✅ |
 
