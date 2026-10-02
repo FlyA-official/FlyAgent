@@ -6,7 +6,7 @@
   <p>
     <a href="https://nashout.com/download">下载 FlyAgent</a> ·
     <a href="https://nashout.com">官网</a> ·
-    <a href="https://discord.gg/hUwMGczz">Discord</a>
+    <a href="https://discord.gg/V5nCM8auA8">Discord</a>
   </p>
 </div>
 
@@ -163,6 +163,6 @@ Windows 已支持；macOS、Android 开发中；Linux、iOS 计划中。
 
 ---
 
-[下载 FlyAgent](https://nashout.com/download) · [购买 Key](https://nashout.com/pricing) · [使用指南与更新公告](https://nashout.com/articles) · [FlyMahjong](https://flymahjong.nashout.com/) · [Discord](https://discord.gg/hUwMGczz)
+[下载 FlyAgent](https://nashout.com/download) · [购买 Key](https://nashout.com/pricing) · [使用指南与更新公告](https://nashout.com/articles) · [FlyMahjong](https://flymahjong.nashout.com/) · [Discord](https://discord.gg/V5nCM8auA8)
 
 本软件为闭源商业软件，保留所有权利。详见 [LICENSE](LICENSE)。

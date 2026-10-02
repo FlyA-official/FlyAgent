@@ -6,7 +6,7 @@
   <p>
     <a href="https://nashout.com/en/download">Download FlyAgent</a> ·
     <a href="https://nashout.com/en">Website</a> ·
-    <a href="https://discord.gg/hUwMGczz">Discord</a>
+    <a href="https://discord.gg/V5nCM8auA8">Discord</a>
   </p>
 </div>
 
@@ -163,6 +163,6 @@ Just delete the extracted folder — no uninstaller, no leftovers. The certifica
 
 ---
 
-[Download FlyAgent](https://nashout.com/en/download) · [Buy a Key](https://nashout.com/en/pricing) · [Guides and release notes](https://nashout.com/en/articles) · [FlyMahjong](https://flymahjong.nashout.com/) · [Discord](https://discord.gg/hUwMGczz)
+[Download FlyAgent](https://nashout.com/en/download) · [Buy a Key](https://nashout.com/en/pricing) · [Guides and release notes](https://nashout.com/en/articles) · [FlyMahjong](https://flymahjong.nashout.com/) · [Discord](https://discord.gg/V5nCM8auA8)
 
 This software is closed-source commercial software. All rights reserved. See [LICENSE](LICENSE).

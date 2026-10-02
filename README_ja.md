@@ -6,7 +6,7 @@
   <p>
     <a href="https://nashout.com/ja/download">FlyAgent をダウンロード</a> ·
     <a href="https://nashout.com/ja">公式サイト</a> ·
-    <a href="https://discord.gg/hUwMGczz">Discord</a>
+    <a href="https://discord.gg/V5nCM8auA8">Discord</a>
   </p>
 </div>
 
@@ -163,6 +163,6 @@ Windows は対応済みです。macOS と Android は開発中、Linux と iOS �
 
 ---
 
-[FlyAgent をダウンロード](https://nashout.com/ja/download) · [Key を購入](https://nashout.com/ja/pricing) · [使い方ガイドとアップデート情報](https://nashout.com/ja/articles) · [FlyMahjong](https://flymahjong.nashout.com/) · [Discord](https://discord.gg/hUwMGczz)
+[FlyAgent をダウンロード](https://nashout.com/ja/download) · [Key を購入](https://nashout.com/ja/pricing) · [使い方ガイドとアップデート情報](https://nashout.com/ja/articles) · [FlyMahjong](https://flymahjong.nashout.com/) · [Discord](https://discord.gg/V5nCM8auA8)
 
 本ソフトウェアはクローズドソースの商用ソフトウェアです。All rights reserved. 詳細は [LICENSE](LICENSE) をご覧ください。
